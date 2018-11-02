@@ -102,11 +102,13 @@ void print_help_info(const int exitcode, const char *errinfo)
   if(exitcode) printf("%s\n", errinfo);
   printf("\nUsage:\n");
   printf("  nextFP [ -i ] [ -f | -b ] [ -nNUM ] [ fpn1 fpn2 ... ]\n");
-  printf("    -i: interactive mode where the anchor point list is not needed\n");
-  printf("    -f: seek forward the next float-point number\n");
-  printf("    -b: seek backward the next float-point number\n");
-  printf("    -nNUM: seek the next $NUM float-point number\n");
-  printf("    fpn1 fpn2 ... : the anchor point list of float-point number\n");
+  printf("    -i: interactive mode where the anchor point list "
+    "is not needed\n");
+  printf("    -f: seek forward the next floating-point number\n");
+  printf("    -b: seek backward the next floating-point number\n");
+  printf("    -nNUM: seek the next $NUM floating-point number\n");
+  printf("    fpn1 fpn2 ... : the anchor point list "
+    "of floating-point number\n");
   printf("\n");
   exit(exitcode);
 }
