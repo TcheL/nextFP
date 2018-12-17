@@ -42,8 +42,12 @@ int main(int argc, char *argv[])
             sscanf(strval, "%*2s%d", &nseek);
           }
           else
-            print_help_info(FAIL2CHECK,
-              "Encounter with invalid command line argument");
+          {
+            char strerr[LENSTR];
+            sprintf(strerr, "Encounter with an invalid "
+              "command line argument <%s>", argv[i]);
+            print_help_info(FAIL2CHECK, strerr);
+          }
         else
         {
           isn = i;
@@ -61,7 +65,7 @@ int main(int argc, char *argv[])
 
   if(isintr)
   {
-    printf("Enter interactive mode:\n");
+    printf("Enter the interactive mode:\n");
     while(1)
     {
       printf(">> ");
@@ -77,7 +81,7 @@ int main(int argc, char *argv[])
         else if(strval[len - 1] == 'L' || strval[len - 1] == 'l')
           dconv_print(strval);
         else
-          printf("<Warning> End number with 'F' or 'L'\n");
+          printf("<< Warning: End number with 'F' or 'L', please.\n");
       }
     }
   }
@@ -91,7 +95,7 @@ int main(int argc, char *argv[])
         dconv_print(argv[i]);
       else
         printf("<< Warning: Ignore the number "
-          "without ending with 'F' or 'L'\n");
+          "without ending with 'F' or 'L'.\n");
     }
 
   return 0;
@@ -99,16 +103,16 @@ int main(int argc, char *argv[])
 
 void print_help_info(const int exitcode, const char *errinfo)
 {
-  if(exitcode) printf("%s\n", errinfo);
+  if(exitcode) printf("Error: %s.\n", errinfo);
   printf("\nUsage:\n");
   printf("  nextFP [ -i ] [ -f | -b ] [ -nNUM ] [ fpn1 fpn2 ... ]\n");
   printf("    -i: interactive mode where the anchor point list "
-    "is not needed\n");
-  printf("    -f: seek forward the next floating-point number\n");
-  printf("    -b: seek backward the next floating-point number\n");
-  printf("    -nNUM: seek the next $NUM floating-point number\n");
+    "is not needed.\n");
+  printf("    -f: seek forward the next floating-point number.\n");
+  printf("    -b: seek backward the next floating-point number.\n");
+  printf("    -nNUM: seek the next $NUM floating-point number.\n");
   printf("    fpn1 fpn2 ... : the anchor point list "
-    "of floating-point number\n");
+    "of floating-point number.\n");
   printf("\n");
   exit(exitcode);
 }
